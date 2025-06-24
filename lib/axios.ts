@@ -75,7 +75,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       if (typeof window !== 'undefined') {
         logout();
-        window.location.href = '/auth/login';
+        // window.location.href = '/unauthorized';
       }
     }
     if (process.env.NODE_ENV === 'development') {

@@ -1,8 +1,8 @@
 // stores/auth-store.ts
-import { AuthTokens, ResponseLogin, User } from '@/types';
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import Cookies from 'js-cookie';
+import { AuthTokens, ResponseLogin, User } from "@/types";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import Cookies from "js-cookie";
 interface AuthState {
   // État
   user: User | null;
@@ -26,7 +26,7 @@ interface AuthState {
 
 const isTokenExpired = (token: string): boolean => {
   try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    const payload = JSON.parse(atob(token.split(".")[1]));
     const currentTime = Date.now() / 1000;
     return payload.exp < currentTime;
   } catch (error) {
@@ -64,8 +64,8 @@ export const useAuthStore = create<AuthState>()(
         });
 
         // Optionnel: Rediriger vers la page de connexion
-        if (typeof window !== 'undefined') {
-          window.location.href = '/login';
+        if (typeof window !== "undefined") {
+          window.location.href = "/auth/login";
         }
       },
 
@@ -115,7 +115,7 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage',
+      name: "auth-storage",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         user: state.user,

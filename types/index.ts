@@ -164,11 +164,11 @@ export interface Conversation {
 
 export interface Message {
   id: string;
-  auteur: Utilisateur;
+  auteur: User;
   contenu: string;
   dateEnvoi: Date;
   conversation: Conversation;
-  luPar: Utilisateur[];
+  luPar: User[];
 }
 export interface Demande {
   id: string;
