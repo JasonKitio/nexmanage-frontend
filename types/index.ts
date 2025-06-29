@@ -12,21 +12,21 @@
 // ================================
 
 export enum Role {
-  EMPLOYE = "EMPLOYE",
-  MANAGER = "MANAGER",
-  ADMIN = "ADMIN",
+  EMPLOYE = 'EMPLOYE',
+  MANAGER = 'MANAGER',
+  ADMIN = 'ADMIN',
 }
 
 export enum StatutTache {
-  EN_ATTENTE = "EN_ATTENTE",
-  EN_COURS = "EN_COURS",
-  TERMINEE = "TERMINEE",
+  EN_ATTENTE = 'EN_ATTENTE',
+  EN_COURS = 'EN_COURS',
+  TERMINEE = 'TERMINEE',
 }
 
 export enum StatutConge {
-  EN_ATTENTE = "EN_ATTENTE",
-  ACCEPTE = "ACCEPTE",
-  REFUSE = "REFUSE",
+  EN_ATTENTE = 'EN_ATTENTE',
+  ACCEPTE = 'ACCEPTE',
+  REFUSE = 'REFUSE',
 }
 
 export type Point = {
@@ -34,9 +34,9 @@ export type Point = {
 };
 
 export enum Priorite {
-  BASSE = "BASSE",
-  MOYENNE = "MOYENNE",
-  HAUTE = "HAUTE",
+  BASSE = 'BASSE',
+  MOYENNE = 'MOYENNE',
+  HAUTE = 'HAUTE',
 }
 
 export interface Entreprise {
@@ -73,22 +73,22 @@ export interface RefreshTokenResponse {
   refresh_token: string;
 }
 
-export interface ResponseLogin {
-  user: User;
-  message: string;
-  accesstoken: string;
-}
-
 export interface User {
   idUtilisateur: string;
   nom: string;
   email: string;
   telephone: string;
-  role: Role;
+  role: string;
   isActif: boolean;
-  dateCreation: Date;
-  update_at: Date;
-  delete_at: null;
+  dateCreation: string;
+  update_at: string;
+  delete_at: string | null;
+}
+
+export interface LoginResponse {
+  user: User;
+  message: string;
+  accesstoken: string;
 }
 
 export interface Contrat {
@@ -173,4 +173,39 @@ export interface Message {
 export interface Demande {
   id: string;
   // Ajoute ici les autres propriétés nécessaires
+}
+
+export interface MyCompaniesRespose {
+  message: string;
+  data: MyEntreprise[];
+  pagination: pagination;
+}
+
+export interface MyEntreprise {
+  id: string;
+  nom: string;
+  domaine: string;
+  adresse: string;
+  email: string;
+  nbre_employers: number;
+  dateCreation: Date;
+  totalUsers: number;
+  owner: Owner;
+  employees: Owner[];
+}
+
+export interface Owner {
+  id: string;
+  nom: string;
+  email: string;
+  telephone: string;
+  role: Role;
+  dateAjout: Date;
+}
+
+interface pagination {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
 }
